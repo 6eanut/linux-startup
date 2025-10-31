@@ -13,7 +13,7 @@ fi
 # 使用 find 找到扩展名为 .c .h .S 的文件，使用 -print0 + read -d '' 以安全处理空格和特殊字符
 find "$source_dir" -type f \( -name '*.c' -o -name '*.h' -o -name '*.S' \) -print0 |
 while IFS= read -r -d '' file; do
-    undertaker -j coverage "$file"
+    undertaker -j coverage -C min "$file"
 done
 
 # 创建目标基础目录
@@ -34,8 +34,9 @@ find "$source_dir" -type f \( -name "*config[0-9]" -o -name "*config[0-9][0-9]" 
     # 创建目标目录
     mkdir -p "$target_dir"
     
-    # 过滤CONFIG行，并检查是否有输出
-    if grep "CONFIG" "$file" > /tmp/temp_$$ 2>/dev/null && [ -s /tmp/temp_$$ ]; then
+    # 过滤CONFIG行，排除掉以#开头的注释行，并检查是否有输出
+    grep -E '^[[:space:]]*CONFIG' "$file" | grep -vE '^[[:space:]]*#' > /tmp/temp_$$ 2>/dev/null
+    if [ -s /tmp/temp_$$ ]; then
         mv /tmp/temp_$$ "$target_file"
         original_lines=$(wc -l < "$file")
         processed_lines=$(wc -l < "$target_file")

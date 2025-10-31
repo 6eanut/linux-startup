@@ -4,220 +4,192 @@ temp
 │   └── sifive
 │       └── errata.c.config1
 ├── include
-│   ├── asm
-│   │   ├── acpi.h.config1
-│   │   ├── acpi.h.config2
-│   │   ├── acpi.h.config3
-│   │   ├── alternative.h.config1
-│   │   ├── alternative.h.config2
-│   │   ├── arch_hweight.h.config1
-│   │   ├── asm-prototypes.h.config1
-│   │   ├── atomic.h.config1
-│   │   ├── atomic.h.config2
-│   │   ├── barrier.h.config1
-│   │   ├── bitops.h.config1
-│   │   ├── bitops.h.config2
-│   │   ├── bug.h.config1
-│   │   ├── bug.h.config2
-│   │   ├── bug.h.config3
-│   │   ├── bug.h.config4
-│   │   ├── cacheflush.h.config1
-│   │   ├── cacheflush.h.config2
-│   │   ├── cacheflush.h.config3
-│   │   ├── cache.h.config1
-│   │   ├── cfi.h.config1
-│   │   ├── cfi.h.config2
-│   │   ├── checksum.h.config1
-│   │   ├── clint.h.config1
-│   │   ├── cmpxchg.h.config1
-│   │   ├── cpufeature.h.config1
-│   │   ├── cpufeature.h.config2
-│   │   ├── cpufeature.h.config3
-│   │   ├── cpufeature.h.config4
-│   │   ├── cpu_ops.h.config1
-│   │   ├── csr.h.config1
-│   │   ├── csr.h.config2
-│   │   ├── csr.h.config3
-│   │   ├── efi.h.config1
-│   │   ├── efi.h.config2
-│   │   ├── elf.h.config1
-│   │   ├── elf.h.config2
-│   │   ├── entry-common.h.config1
-│   │   ├── entry-common.h.config2
-│   │   ├── errata_list.h.config1
-│   │   ├── errata_list.h.config2
-│   │   ├── errata_list.h.config3
-│   │   ├── errata_list_vendors.h.config1
-│   │   ├── extable.h.config1
-│   │   ├── extable.h.config2
-│   │   ├── extable.h.config3
-│   │   ├── fence.h.config1
-│   │   ├── fence.h.config2
-│   │   ├── fixmap.h.config1
-│   │   ├── ftrace.h.config1
-│   │   ├── futex.h.config1
-│   │   ├── gdb_xml.h.config1
-│   │   ├── gdb_xml.h.config2
-│   │   ├── hugetlb.h.config1
-│   │   ├── hwcap.h.config1
-│   │   ├── hwcap.h.config2
-│   │   ├── hwprobe.h.config1
-│   │   ├── hwprobe.h.config2
-│   │   ├── image.h.config1
-│   │   ├── image.h.config2
-│   │   ├── insn.h.config1
-│   │   ├── insn.h.config2
-│   │   ├── io.h.config1
-│   │   ├── irq.h.config1
-│   │   ├── irq.h.config2
-│   │   ├── irq_stack.h.config1
-│   │   ├── kasan.h.config1
-│   │   ├── kexec.h.config1
-│   │   ├── kgdb.h.config1
-│   │   ├── kgdb.h.config2
-│   │   ├── kprobes.h.config1
-│   │   ├── kprobes.h.config2
-│   │   ├── kvm_aia.h.config1
-│   │   ├── kvm_aia.h.config2
-│   │   ├── kvm_gstage.h.config1
-│   │   ├── kvm_gstage.h.config2
-│   │   ├── kvm_nacl.h.config1
-│   │   ├── kvm_nacl.h.config2
-│   │   ├── kvm_vcpu_fp.h.config1
-│   │   ├── kvm_vcpu_fp.h.config2
-│   │   ├── kvm_vcpu_pmu.h.config1
-│   │   ├── kvm_vcpu_pmu.h.config2
-│   │   ├── kvm_vcpu_pmu.h.config3
-│   │   ├── kvm_vcpu_sbi_fwft.h.config1
-│   │   ├── kvm_vcpu_sbi.h.config1
-│   │   ├── kvm_vcpu_vector.h.config1
-│   │   ├── kvm_vcpu_vector.h.config2
-│   │   ├── mmio.h.config1
-│   │   ├── mmu_context.h.config1
-│   │   ├── mmu.h.config1
-│   │   ├── mmu.h.config2
-│   │   ├── module.h.config1
-│   │   ├── module.lds.h.config1
-│   │   ├── page.h.config1
-│   │   ├── page.h.config2
-│   │   ├── page.h.config3
-│   │   ├── page.h.config4
-│   │   ├── page.h.config5
-│   │   ├── page.h.config6
-│   │   ├── paravirt.h.config1
-│   │   ├── paravirt.h.config2
-│   │   ├── pci.h.config1
-│   │   ├── perf_event.h.config1
-│   │   ├── pgalloc.h.config1
-│   │   ├── pgtable-64.h.config1
-│   │   ├── pgtable-64.h.config2
-│   │   ├── pgtable.h.config1
-│   │   ├── pgtable.h.config10
-│   │   ├── pgtable.h.config11
-│   │   ├── pgtable.h.config12
-│   │   ├── pgtable.h.config13
-│   │   ├── pgtable.h.config14
-│   │   ├── pgtable.h.config2
-│   │   ├── pgtable.h.config3
-│   │   ├── pgtable.h.config4
-│   │   ├── pgtable.h.config5
-│   │   ├── pgtable.h.config6
-│   │   ├── pgtable.h.config7
-│   │   ├── pgtable.h.config8
-│   │   ├── pgtable.h.config9
-│   │   ├── probes.h.config1
-│   │   ├── processor.h.config1
-│   │   ├── processor.h.config2
-│   │   ├── processor.h.config3
-│   │   ├── ptrace.h.config1
-│   │   ├── ptrace.h.config2
-│   │   ├── runtime-const.h.config1
-│   │   ├── runtime-const.h.config2
-│   │   ├── runtime-const.h.config3
-│   │   ├── runtime-const.h.config4
-│   │   ├── runtime-const.h.config5
-│   │   ├── sbi.h.config1
-│   │   ├── sbi.h.config2
-│   │   ├── sbi.h.config3
-│   │   ├── sbi.h.config4
-│   │   ├── seccomp.h.config1
-│   │   ├── seccomp.h.config2
-│   │   ├── set_memory.h.config1
-│   │   ├── set_memory.h.config2
-│   │   ├── set_memory.h.config3
-│   │   ├── set_memory.h.config4
-│   │   ├── signal32.h.config1
-│   │   ├── signal32.h.config2
-│   │   ├── simd.h.config1
-│   │   ├── simd.h.config2
-│   │   ├── smp.h.config1
-│   │   ├── smp.h.config2
-│   │   ├── sparsemem.h.config1
-│   │   ├── sparsemem.h.config2
-│   │   ├── spinlock.h.config1
-│   │   ├── spinlock.h.config2
-│   │   ├── spinlock.h.config3
-│   │   ├── stacktrace.h.config1
-│   │   ├── string.h.config1
-│   │   ├── suspend.h.config1
-│   │   ├── swab.h.config1
-│   │   ├── swab.h.config2
-│   │   ├── switch_to.h.config1
-│   │   ├── switch_to.h.config2
-│   │   ├── switch_to.h.config3
-│   │   ├── sync_core.h.config1
-│   │   ├── sync_core.h.config2
-│   │   ├── syscall.h.config1
-│   │   ├── syscall.h.config2
-│   │   ├── syscall_wrapper.h.config1
-│   │   ├── syscall_wrapper.h.config2
-│   │   ├── thread_info.h.config1
-│   │   ├── thread_info.h.config2
-│   │   ├── thread_info.h.config3
-│   │   ├── thread_info.h.config4
-│   │   ├── timex.h.config1
-│   │   ├── timex.h.config2
-│   │   ├── timex.h.config3
-│   │   ├── tlbflush.h.config1
-│   │   ├── tlbflush.h.config2
-│   │   ├── tlb.h.config1
-│   │   ├── topology.h.config1
-│   │   ├── uaccess.h.config1
-│   │   ├── uaccess.h.config2
-│   │   ├── uaccess.h.config3
-│   │   ├── uaccess.h.config4
-│   │   ├── uaccess.h.config5
-│   │   ├── uaccess.h.config6
-│   │   ├── unistd.h.config1
-│   │   ├── uprobes.h.config1
-│   │   ├── uprobes.h.config2
-│   │   ├── uprobes.h.config3
-│   │   ├── vdso
-│   │   │   └── gettimeofday.h.config1
-│   │   ├── vdso.h.config1
-│   │   ├── vector.h.config1
-│   │   ├── vector.h.config2
-│   │   ├── vector.h.config3
-│   │   ├── vendor_extensions
-│   │   │   ├── mips_hwprobe.h.config1
-│   │   │   ├── mips_hwprobe.h.config2
-│   │   │   ├── sifive_hwprobe.h.config1
-│   │   │   ├── sifive_hwprobe.h.config2
-│   │   │   ├── thead.h.config1
-│   │   │   ├── thead.h.config2
-│   │   │   ├── thead_hwprobe.h.config1
-│   │   │   └── thead_hwprobe.h.config2
-│   │   ├── vmalloc.h.config1
-│   │   ├── word-at-a-time.h.config1
-│   │   └── xor.h.config1
-│   └── uapi
-│       └── asm
-│           └── kvm.h.config1
+│   └── asm
+│       ├── acpi.h.config1
+│       ├── acpi.h.config2
+│       ├── alternative.h.config1
+│       ├── alternative.h.config2
+│       ├── arch_hweight.h.config1
+│       ├── arch_hweight.h.config2
+│       ├── arch_hweight.h.config3
+│       ├── asm-prototypes.h.config1
+│       ├── atomic.h.config1
+│       ├── atomic.h.config2
+│       ├── barrier.h.config1
+│       ├── bitops.h.config1
+│       ├── bitops.h.config2
+│       ├── bitops.h.config3
+│       ├── bitops.h.config4
+│       ├── bug.h.config1
+│       ├── bug.h.config2
+│       ├── cacheflush.h.config1
+│       ├── cacheflush.h.config2
+│       ├── cache.h.config1
+│       ├── cfi.h.config1
+│       ├── cfi.h.config2
+│       ├── checksum.h.config1
+│       ├── clint.h.config1
+│       ├── cmpxchg.h.config1
+│       ├── cpufeature.h.config1
+│       ├── cpufeature.h.config2
+│       ├── cpu_ops.h.config1
+│       ├── csr.h.config1
+│       ├── csr.h.config2
+│       ├── efi.h.config1
+│       ├── efi.h.config2
+│       ├── elf.h.config1
+│       ├── elf.h.config2
+│       ├── entry-common.h.config1
+│       ├── entry-common.h.config2
+│       ├── errata_list.h.config1
+│       ├── errata_list.h.config2
+│       ├── errata_list.h.config3
+│       ├── errata_list_vendors.h.config1
+│       ├── extable.h.config1
+│       ├── extable.h.config2
+│       ├── fence.h.config1
+│       ├── fence.h.config2
+│       ├── fixmap.h.config1
+│       ├── ftrace.h.config1
+│       ├── futex.h.config1
+│       ├── gdb_xml.h.config1
+│       ├── gdb_xml.h.config2
+│       ├── hugetlb.h.config1
+│       ├── hwcap.h.config1
+│       ├── hwcap.h.config2
+│       ├── hwprobe.h.config1
+│       ├── hwprobe.h.config2
+│       ├── image.h.config1
+│       ├── image.h.config2
+│       ├── insn.h.config1
+│       ├── insn.h.config2
+│       ├── io.h.config1
+│       ├── irq.h.config1
+│       ├── irq.h.config2
+│       ├── irq_stack.h.config1
+│       ├── kasan.h.config1
+│       ├── kexec.h.config1
+│       ├── kgdb.h.config1
+│       ├── kgdb.h.config2
+│       ├── kprobes.h.config1
+│       ├── kprobes.h.config2
+│       ├── kvm_aia.h.config1
+│       ├── kvm_aia.h.config2
+│       ├── kvm_gstage.h.config1
+│       ├── kvm_gstage.h.config2
+│       ├── kvm_nacl.h.config1
+│       ├── kvm_nacl.h.config2
+│       ├── kvm_vcpu_fp.h.config1
+│       ├── kvm_vcpu_fp.h.config2
+│       ├── kvm_vcpu_pmu.h.config1
+│       ├── kvm_vcpu_pmu.h.config2
+│       ├── kvm_vcpu_pmu.h.config3
+│       ├── kvm_vcpu_sbi_fwft.h.config1
+│       ├── kvm_vcpu_sbi.h.config1
+│       ├── kvm_vcpu_vector.h.config1
+│       ├── kvm_vcpu_vector.h.config2
+│       ├── mmio.h.config1
+│       ├── mmu_context.h.config1
+│       ├── mmu.h.config1
+│       ├── mmu.h.config2
+│       ├── module.h.config1
+│       ├── module.lds.h.config1
+│       ├── page.h.config1
+│       ├── page.h.config2
+│       ├── page.h.config3
+│       ├── page.h.config4
+│       ├── paravirt.h.config1
+│       ├── paravirt.h.config2
+│       ├── pci.h.config1
+│       ├── perf_event.h.config1
+│       ├── pgalloc.h.config1
+│       ├── pgtable-64.h.config1
+│       ├── pgtable-64.h.config2
+│       ├── pgtable.h.config1
+│       ├── pgtable.h.config2
+│       ├── pgtable.h.config3
+│       ├── pgtable.h.config4
+│       ├── pgtable.h.config5
+│       ├── probes.h.config1
+│       ├── processor.h.config1
+│       ├── processor.h.config2
+│       ├── ptrace.h.config1
+│       ├── ptrace.h.config2
+│       ├── runtime-const.h.config1
+│       ├── runtime-const.h.config2
+│       ├── runtime-const.h.config3
+│       ├── runtime-const.h.config4
+│       ├── runtime-const.h.config5
+│       ├── sbi.h.config1
+│       ├── sbi.h.config2
+│       ├── sbi.h.config3
+│       ├── seccomp.h.config1
+│       ├── seccomp.h.config2
+│       ├── set_memory.h.config1
+│       ├── set_memory.h.config2
+│       ├── set_memory.h.config3
+│       ├── signal32.h.config1
+│       ├── signal32.h.config2
+│       ├── simd.h.config1
+│       ├── simd.h.config2
+│       ├── smp.h.config1
+│       ├── smp.h.config2
+│       ├── sparsemem.h.config1
+│       ├── sparsemem.h.config2
+│       ├── spinlock.h.config1
+│       ├── spinlock.h.config2
+│       ├── spinlock.h.config3
+│       ├── stacktrace.h.config1
+│       ├── string.h.config1
+│       ├── suspend.h.config1
+│       ├── swab.h.config1
+│       ├── swab.h.config2
+│       ├── switch_to.h.config1
+│       ├── switch_to.h.config2
+│       ├── sync_core.h.config1
+│       ├── sync_core.h.config2
+│       ├── syscall.h.config1
+│       ├── syscall.h.config2
+│       ├── syscall_wrapper.h.config1
+│       ├── syscall_wrapper.h.config2
+│       ├── thread_info.h.config1
+│       ├── thread_info.h.config2
+│       ├── timex.h.config1
+│       ├── timex.h.config2
+│       ├── timex.h.config3
+│       ├── tlbflush.h.config1
+│       ├── tlbflush.h.config2
+│       ├── tlb.h.config1
+│       ├── topology.h.config1
+│       ├── uaccess.h.config1
+│       ├── uaccess.h.config2
+│       ├── uaccess.h.config3
+│       ├── uaccess.h.config4
+│       ├── unistd.h.config1
+│       ├── uprobes.h.config1
+│       ├── uprobes.h.config2
+│       ├── vdso
+│       │   └── gettimeofday.h.config1
+│       ├── vdso.h.config1
+│       ├── vector.h.config1
+│       ├── vector.h.config2
+│       ├── vector.h.config3
+│       ├── vendor_extensions
+│       │   ├── mips_hwprobe.h.config1
+│       │   ├── mips_hwprobe.h.config2
+│       │   ├── sifive_hwprobe.h.config1
+│       │   ├── sifive_hwprobe.h.config2
+│       │   ├── thead.h.config1
+│       │   ├── thead.h.config2
+│       │   ├── thead_hwprobe.h.config1
+│       │   └── thead_hwprobe.h.config2
+│       ├── vmalloc.h.config1
+│       ├── word-at-a-time.h.config1
+│       └── xor.h.config1
 ├── kernel
 │   ├── acpi.c.config1
 │   ├── alternative.c.config1
 │   ├── alternative.c.config2
-│   ├── alternative.c.config3
 │   ├── asm-offsets.c.config1
 │   ├── compat_signal.c.config1
 │   ├── compat_signal.c.config2
@@ -225,8 +197,6 @@ temp
 │   ├── cpu.c.config1
 │   ├── cpu.c.config2
 │   ├── cpu.c.config3
-│   ├── cpu.c.config4
-│   ├── cpu.c.config5
 │   ├── cpufeature.c.config1
 │   ├── cpufeature.c.config2
 │   ├── cpu-hotplug.c.config1
@@ -234,10 +204,10 @@ temp
 │   ├── cpu_ops_sbi.c.config1
 │   ├── efi-header.S.config1
 │   ├── efi-header.S.config2
-│   ├── efi-header.S.config3
 │   ├── entry.S.config1
 │   ├── entry.S.config2
 │   ├── fpu.S.config1
+│   ├── fpu.S.config2
 │   ├── ftrace.c.config1
 │   ├── ftrace.c.config2
 │   ├── ftrace.c.config3
@@ -245,8 +215,6 @@ temp
 │   ├── head.S.config1
 │   ├── head.S.config2
 │   ├── head.S.config3
-│   ├── head.S.config4
-│   ├── head.S.config5
 │   ├── hibernate.c.config1
 │   ├── image-vars.h.config1
 │   ├── irq.c.config1
@@ -262,7 +230,6 @@ temp
 │   ├── mcount-dyn.S.config2
 │   ├── mcount.S.config1
 │   ├── mcount.S.config2
-│   ├── mcount.S.config3
 │   ├── module.c.config1
 │   ├── module.c.config2
 │   ├── patch.c.config1
@@ -276,12 +243,11 @@ temp
 │   ├── ptrace.c.config2
 │   ├── sbi.c.config1
 │   ├── sbi.c.config2
+│   ├── sbi.c.config3
 │   ├── setup.c.config1
 │   ├── setup.c.config2
 │   ├── signal.c.config1
 │   ├── signal.c.config2
-│   ├── signal.c.config3
-│   ├── signal.c.config4
 │   ├── smpboot.c.config1
 │   ├── smpboot.c.config2
 │   ├── smp.c.config1
@@ -292,8 +258,6 @@ temp
 │   ├── suspend_entry.S.config1
 │   ├── sys_hwprobe.c.config1
 │   ├── sys_hwprobe.c.config2
-│   ├── sys_hwprobe.c.config3
-│   ├── sys_hwprobe.c.config4
 │   ├── sys_riscv.c.config1
 │   ├── tests
 │   │   ├── kprobes
@@ -314,12 +278,8 @@ temp
 │   ├── traps_misaligned.c.config1
 │   ├── traps_misaligned.c.config2
 │   ├── traps_misaligned.c.config3
-│   ├── traps_misaligned.c.config4
-│   ├── traps_misaligned.c.config5
-│   ├── traps_misaligned.c.config6
 │   ├── unaligned_access_speed.c.config1
 │   ├── unaligned_access_speed.c.config2
-│   ├── unaligned_access_speed.c.config3
 │   ├── vdso
 │   │   ├── flush_icache.S.config1
 │   │   ├── flush_icache.S.config2
@@ -331,9 +291,7 @@ temp
 │   ├── vmcore_info.c.config1
 │   ├── vmcore_info.c.config2
 │   ├── vmlinux.lds.S.config1
-│   ├── vmlinux.lds.S.config2
-│   ├── vmlinux.lds.S.config3
-│   └── vmlinux.lds.S.config4
+│   └── vmlinux.lds.S.config2
 ├── kvm
 │   ├── aia.c.config1
 │   ├── aia.c.config2
@@ -357,7 +315,6 @@ temp
 ├── lib
 │   ├── csum.c.config1
 │   ├── csum.c.config2
-│   ├── csum.c.config3
 │   ├── memset.S.config1
 │   ├── riscv_v_helpers.c.config1
 │   ├── strcmp.S.config1
@@ -376,11 +333,6 @@ temp
 │   ├── init.c.config2
 │   ├── init.c.config3
 │   ├── init.c.config4
-│   ├── init.c.config5
-│   ├── init.c.config6
-│   ├── init.c.config7
-│   ├── init.c.config8
-│   ├── init.c.config9
 │   ├── kasan_init.c.config1
 │   ├── pageattr.c.config1
 │   ├── pageattr.c.config2
@@ -392,4 +344,11 @@ temp
 └── net
     └── bpf_jit_comp64.c.config1
 
-18 directories, 373 files
+16 directories, 327 files
+
+--------------------------------------------
+$cat include/asm/uaccess.h.config5
+CONFIG_64BIT=n
+CONFIG_CC_HAS_ASM_GOTO_OUTPUT=y
+CONFIG_MMU=y
+CONFIG_RISCV_ISA_SUPM=n

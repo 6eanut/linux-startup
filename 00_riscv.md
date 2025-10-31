@@ -8,6 +8,15 @@
 
 这是一个开源项目：[https://github.com/6eanut/original-undertaker-tailor](https://github.com/6eanut/original-undertaker-tailor)
 
+#### 1-1-0 从源码编译构建
+
+```shell
+make localpuma
+# 这里可能需要配一下puma的环境变量，从makefile里面找思路
+make
+PREFIX=/pathto/undertaker make install
+```
+
 下面介绍一下它的部分功能。
 
 #### 1-1-1 blockrange
@@ -60,6 +69,8 @@ CONFIG_MMU=y
 CONFIG_SMP=n
 ```
 
+对于coverage模式，还有一些其他的额外选项，比如-C min用来指定生成尽可能少的配置组合，但速度会变慢；-C min_decision/simple_decision会依赖判定覆盖而非语句覆盖。
+
 #### 1-1-4 blockpc
 
 用于分析某个文件的某一行(甚至某一列)被哪个配置项管理。
@@ -80,9 +91,13 @@ $ undertaker -j blockconf arch/riscv/mm/cacheflush.c:180
 CONFIG_SMP=y
 ```
 
-### 1-2 cover每个文件所需要的config清单
+#### 1-1-6 undertaker-linux-tree
 
-undertaker的coverage功能能够生成若干config清单，这些清单的总和能够cover这个文件的所有代码，我这里写了一个脚本来完成这个事情，见[这里](00_riscv/code/configs_cover_file.sh)。
+先在linux目录下执行undertaker-kconfigdump来生成model文件，然后运行undertaker-linux-tree来检测是否有dead代码。(目前在生成model时不支持riscv)
+
+### 1-2 cover每个文件所需要的config清单(尚未考虑Makefile的影响，后续需要补上)
+
+undertaker的coverage功能能够生成若干config清单，这些清单的总和能够cover这个文件的所有代码，我这里写了一个脚本来完成这个事情，见[这里](00_riscv/code/file2config.sh)。
 
 它的执行流程是这样的：
 
@@ -91,4 +106,39 @@ undertaker的coverage功能能够生成若干config清单，这些清单的总�
 
 结果大致是[这样](00_riscv/code/configs_cover_file_result.txt)的。
 
+然后借助golem工具的-e选项，输入由前面undertaker的coverage选项生成的config，进而生成整个linux的config清单。
+
+```shell
+export ARCH=riscv
+golem -e include/asm/uaccess.h.config5
+```
+
+理论上可以直接对这327个config进行扩展，得到linux的.config；但是这太多了，而且得到的.config们可能有重复的，所以需要做处理。
+
+### 1-3 cover arch/riscv的最少config清单数
+
+一个比较容易想到的strawman approach是：现在已知哪个配置组合可以cover哪个文件，那么如果配置组合A包含配置组合B，就可以把配置组合B所cover的文件放到配置组合A所cover的文件下面并把配置组合B删掉，这样能减少配置组合数。
+
+实现脚本在[这里](00_riscv/code/config2files.py)。这一步可以从327个配置组合缩减到155个配置组合。接下来的缩减思路分为两种情况：
+
+* 情况1：配置组合A和配置组合B中的config完全无交集，需要看看这两组配置组合能否合并？
+* 情况2：配置组合A和配置组合B中的config有交集
+  * 情况2-1：config在A中是y/m，而在B中是n，这意味着两个配置组合只能分别生成相应的linux .config。
+  * 情况2-2：config在A和B中都是y/m，此时和情况1类似。
+
+太复杂了....换个思路，先把管理arch/riscv的配置项中，取值单一的(y/n)给处理了，看看能不能打开/关闭，然后再去看取值y和n都有的，这一步的分析用[脚本](00_riscv/code/analyze_config.py)。
+
+
+
+
+
+
+
+
+
+
+
+
 ## 2 系统调用
+
+一个思路：对于一个系统调用，能获得其所触发的addr，转换成file:line，然后看在不在arch/riscv下面，如果在的话，记录下来。然后在变异和生成的时候，疯狂往里插。
