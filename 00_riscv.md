@@ -128,17 +128,14 @@ golem -e include/asm/uaccess.h.config5
 
 太复杂了....换个思路，先把管理arch/riscv的配置项中，取值单一的(y/n)给处理了，看看能不能打开/关闭，然后再去看取值y和n都有的，这一步的分析用[脚本](00_riscv/code/analyze_config.py)。
 
+最终得到的一个结果是这样的，见[这](00_riscv/code/config_items_stats_with_meaning.csv)，想要覆盖所有code，起码要五十个config清单。接下来可以做的事情是这样的：
 
-
-
-
-
-
-
-
-
-
+* 现在的config覆盖了多少代码？
+* 通过把y/n更新进config，覆盖的代码增大到了百分之多少？
+* 其余的是需要创建多个config来覆盖剩余的代码，需要多少个？
 
 ## 2 系统调用
 
-一个思路：对于一个系统调用，能获得其所触发的addr，转换成file:line，然后看在不在arch/riscv下面，如果在的话，记录下来。然后在变异和生成的时候，疯狂往里插。
+对每个系统调用所触发的addr做分析，看其所触发的代码是否位于arch/riscv下，如果是，那么就提高这个系统调用被变异/生成策略选中的概率。
+
+可能需要比对一下效果？
