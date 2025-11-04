@@ -134,6 +134,8 @@ golem -e include/asm/uaccess.h.config5
 * 通过把y/n更新进config，覆盖的代码增大到了百分之多少？
 * 其余的是需要创建多个config来覆盖剩余的代码，需要多少个？
 
+后续分析见[这里](00_riscv/docs/config_analyze.md)。
+
 ## 2 系统调用
 
 对每个系统调用所触发的addr做分析，看其所触发的代码是否位于arch/riscv下，如果是，那么就提高这个系统调用被变异/生成策略选中的概率。
