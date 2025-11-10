@@ -1,6 +1,8 @@
 2025-11-10
 种子库复用的事情给实现了，见corpus-reuse.py和corpus_reuse.md
 配置项清单把warn_on_panic关掉了，要不然内核无法启动。
+配置项清单打分的事情把makefile/kconfig考虑进去了，借助kbuildparser，脚本见score_config_v2.py
+真正用于编译内核的配置项清单见03_real.txt，因为ftrace好像会导致内核无法启动
 
 2025-11-06
 对于一个给定的.config,可以分析出这个配置项清单把多少行位于arch/riscv下被配置项管理的代码编译了进去，见score_config.py和score_config.md

@@ -1,27 +1,6 @@
-# Score config
-
-需要一个程序，能够给一个.config打分，看其能覆盖arch/riscv下的多少代码。
-
-这个程序需要做三件事情：
-
-* 读arch/riscv下的.S, .c, .h文件，分析出哪个文件的哪些行被哪些配置项管理；
-* 读.config文件，分析出定义了哪些配置项以及该配置项被设置的值是多少；
-* 打分，对于每一个被配置项管理的file:line而言，看值是否被满足。
-
-输出：arch/riscv下共有多少代码行，有多少代码行被配置项管理，当前.config能让多少代码行被编译进内核。
-
-## 1 统计.c, .S, .h的代码行数
-
-统计 `arch/riscv/` 下所有 `.c`、`.S`、`.h` 文件的代码行数 。
-
-这个模块的目标是：
-
-* 递归遍历 `arch/riscv/`
-* 只统计后缀为 `.c`, `.S`, `.h` 的文件
-* 计算总行数（可以区分空行 / 非空行）
-
-```shell
 import os
+import csv
+import subprocess
 
 def count_source_lines(root="arch/riscv"):
     exts = {".c", ".S", ".h"}
@@ -51,22 +30,13 @@ def count_source_lines(root="arch/riscv"):
 
     return total_lines, total_nonempty_lines, file_line_counts
 
-if __name__ == "__main__":
-    total, nonempty, detail = count_source_lines("/home/rv/mrvga/linux-6.18-rc3/arch/riscv")
-    print(f"总代码行数: {total}")
-    print(f"非空行数: {nonempty}")
-    print(f"文件数: {len(detail)}")
+# if __name__ == "__main__":
+#     total, nonempty, detail = count_source_lines("/home/rv/mrvga/riscv-for-linus-6.18-rc3/arch/riscv")
+#     print(f"总代码行数: {total}")
+#     print(f"非空行数: {nonempty}")
+#     print(f"文件数: {len(detail)}")
 
-总代码行数: 65151
-非空行数: 55337
-文件数: 396
-```
 
-## 2 分析undertaker -j blockconf path:line的输出结果
-
-对于arch/riscv目录下的每个.c, .S, .h文件的每一行都调用undertaker的blockconf功能，筛选出非#开头的行(叫做CONFIGS))，形成从path:line->CONFIGS的映射。
-
-```python
 import os
 import subprocess
 import multiprocessing
@@ -148,27 +118,18 @@ def analyze_riscv_arch(root="arch/riscv", nprocs=8, csv_file="fileline_output.cs
         for fl, lines in fileline_to_output.items():
             writer.writerow([fl, ";".join(lines)])
 
-    print(f"[INFO] FILE:LINE -> output_lines CSV 写入 {csv_file}")
+    # print(f"[INFO] FILE:LINE -> output_lines CSV 写入 {csv_file}")
 
     return fileline_to_output
 
-if __name__ == "__main__":
-    mapping = analyze_riscv_arch(
-        root="/home/rv/mrvga/linux-6.18-rc3/arch/riscv",
-        nprocs=80,
-        csv_file="fileline_output.csv"
-    )
-    print(f"[INFO] 总共有 {len(mapping)} 个行被配置项管理。")
+# if __name__ == "__main__":
+#     mapping = analyze_riscv_arch(
+#         root="/home/rv/mrvga/riscv-for-linus-6.18-rc3/arch/riscv",
+#         nprocs=80,
+#         csv_file="fileline_output.csv"
+#     )
+#     print(f"[INFO] 总共有 {len(mapping)} 个行被配置项管理。")
 
-[INFO] FILE:LINE -> output_lines CSV 写入 fileline_output.csv
-[INFO] 总共有 13288 个行被配置项管理。
-```
-
-## 3 分析path:line是否被编进内核
-
-前面分析得到了fileline_to_output，对于每个每个fileline，需要去看其output在.config中是否被满足：
-
-```python
 import csv
 import re
 
@@ -246,38 +207,6 @@ def evaluate_compilation(fileline_to_output, config_path, csv_compiled, csv_skip
 
     return compiled, skipped
 
-if __name__ == "__main__":
-    mapping = analyze_riscv_arch(
-        root="/home/rv/mrvga/linux-6.18-rc3/arch/riscv",
-        nprocs=80,
-        csv_file="fileline_output.csv"
-    )
-
-    compiled, skipped = evaluate_compilation(
-        fileline_to_output=mapping,
-        config_path="/home/rv/mrvga/syzkaller-config",
-        csv_compiled="compiled_lines.csv",
-        csv_skipped="skipped_lines.csv"
-    )
-
-# 对于syzbot提供的和优化后的config作比较
-rv@userid-07:~/mrvga/1106$ python test.py 
-[INFO] FILE:LINE -> output_lines CSV 写入 fileline_output.csv
-[INFO] 被编译进内核的行: 11420
-[INFO] 未编译进内核的行: 1868
-[INFO] 编译进内核比例: 85.94%
-rv@userid-07:~/mrvga/1106$ python test.py 
-[INFO] FILE:LINE -> output_lines CSV 写入 fileline_output.csv
-[INFO] 被编译进内核的行: 10523
-[INFO] 未编译进内核的行: 2765
-[INFO] 编译进内核比例: 79.19%
-```
-
-## 4 makefile/kbuild对文件的影响
-
-有的配置项是在makefile/kbuild中直接控制某个文件是否被编进内核，而这是undertaker无法处理的。所以需要借助[kbuildparser](https://github.com/6eanut/kbuildparser)。
-
-```python
 import subprocess
 import os
 import re
@@ -367,8 +296,30 @@ def update_mapping_from_kbuildparser_live(fileline_to_output, root="arch/riscv",
         debug.write(f"\n[INFO] 总共更新了 {len(updated_mapping)} 个行条目\n")
 
     return updated_mapping
-```
 
-## 5 效果
 
-![1762771041481](image/score_config/1762771041481.png)
+
+if __name__ == "__main__":
+    total, nonempty, detail = count_source_lines("/home/rv/mrvga/1110/linux-clang/arch/riscv")
+    print(f"[INFO] 总代码行数: {total}")
+    print(f"[INFO] 非空行数: {nonempty}")
+    print(f"[INFO] 文件数: {len(detail)}")
+
+    mapping = analyze_riscv_arch(
+        root="/home/rv/mrvga/1110/linux-clang/arch/riscv",
+        nprocs=128,
+        csv_file="fileline_output.csv"
+    )
+
+    mapping = update_mapping_from_kbuildparser_live(
+        mapping,
+        root="/home/rv/mrvga/1110/linux-clang/arch/riscv",
+        debug_file="kbuildparser_debug.log"
+    )
+
+    compiled, skipped = evaluate_compilation(
+        fileline_to_output=mapping,
+        config_path="//home/rv/mrvga/my-config",
+        csv_compiled="compiled_lines.csv",
+        csv_skipped="skipped_lines.csv"
+    )
