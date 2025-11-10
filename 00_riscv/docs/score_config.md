@@ -372,3 +372,20 @@ def update_mapping_from_kbuildparser_live(fileline_to_output, root="arch/riscv",
 ## 5 效果
 
 ![1762771041481](image/score_config/1762771041481.png)
+
+```shell
+rv@userid-07:~/mrvga/1106$ python test.py 
+[INFO] 总代码行数: 66861
+[INFO] 非空行数: 57030
+[INFO] 文件数: 461
+[INFO] 被编译进内核的行: 11220
+[INFO] 未编译进内核的行: 2085
+[INFO] 编译进内核比例: 84.33%
+rv@userid-07:~/mrvga/1106$ python test.py 
+[INFO] 总代码行数: 66861
+[INFO] 非空行数: 57030
+[INFO] 文件数: 461
+[INFO] 被编译进内核的行: 9596
+[INFO] 未编译进内核的行: 3709
+[INFO] 编译进内核比例: 72.12%
+```
