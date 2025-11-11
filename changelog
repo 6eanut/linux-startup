@@ -1,3 +1,6 @@
+2025-11-11
+kprobe, wprobes, kstackwatch, rfc, kfuzztest
+
 2025-11-10
 种子库复用的事情给实现了，见corpus-reuse.py和corpus_reuse.md
 配置项清单把warn_on_panic关掉了，要不然内核无法启动。
