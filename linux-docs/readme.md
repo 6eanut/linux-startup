@@ -14,4 +14,12 @@
 
 [003 SUBARCH](misc/003_subarch.md)
 
-[004 Statement &amp; Decision Coverage](misc/004_statement_decision_coverage.md)
+[004 Statement and Decision Coverage](misc/004_statement_decision_coverage.md)
+
+[005 kprobe and wprobes](misc/005_kprobe_wprobes.md)
+
+[006 KStackWatch](misc/006_kstackwatch.md)
+
+[007 RFC](misc/007_rfc.md)
+
+[008 KFuzzTest](misc/008_kfuzztest.md)
