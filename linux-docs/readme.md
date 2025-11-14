@@ -4,6 +4,8 @@
 
 [000 adding a new system call](official/000_adding_a_new_system_call.md)
 
+[001 submitting patches](official/001_submitting_patches.md)
+
 ## misc
 
 [000 vdso](misc/000_vdso.md)
