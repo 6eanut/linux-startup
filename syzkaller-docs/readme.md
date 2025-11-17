@@ -7,3 +7,5 @@
 [001 coverage](official/001_coverage.md)
 
 ## misc
+
+[000 syzkaller](misc/000_lwn_syzkaller.md)

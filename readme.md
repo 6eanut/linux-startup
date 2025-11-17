@@ -9,3 +9,5 @@
 [linux-docs](linux-docs/readme.md)
 
 [syzkaller-docs](syzkaller-docs/readme.md)
+
+[llvm-docs](llvm-docs/readme.md)
