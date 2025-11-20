@@ -4,6 +4,8 @@
 
 [00 fuzz in arch/riscv](00_riscv.md)
 
+* [tools](00_riscv/tools/readme.md)
+
 ## docs
 
 [linux-docs](linux-docs/readme.md)
