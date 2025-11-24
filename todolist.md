@@ -1,6 +1,16 @@
+2025-11-24
+
+* [ ] 进一步调研syzlang in riscv；
+* [ ] 利用[krepair](https://github.com/paulgazz/kmax)对配置项清单/fuzzer做改进。
+
+> Linux的riscv分支每隔1~2周就会更新rc版本，在持续模糊测试的场景下，测试的重点应当放在这些新加入的补丁上。因此：
+>
+> * 大部分的配置项不用开，只需要开那些能覆盖补丁的配置项即可；
+> * 在测试时给能探索补丁代码的种子或系统调用赋更高的权重。
+
 2025-11-11
 
-* [ ] 拓展syzlang支持：调研syzlang对riscv的支持现状，明确未覆盖的riscv特有系统调用；
+* [X] 拓展syzlang支持：调研syzlang对riscv的支持现状，明确未覆盖的riscv特有系统调用；
   编写riscv专属syzlang测试描述与用例；
   验证用例在riscv内核的兼容性，提升架构特有代码的覆盖精准度。
 * [X] syzkaller在lwn的博客。
