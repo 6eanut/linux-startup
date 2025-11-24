@@ -6,6 +6,8 @@
 
 * [tools](00_riscv/tools/readme.md)
 
+[01 Syzlang in RISC-V](01_syzlang_in_riscv.md)
+
 ## docs
 
 [linux-docs](linux-docs/readme.md)
