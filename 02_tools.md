@@ -1,6 +1,8 @@
-# krepair
+## krepair
 
-## 0 小试牛刀
+一个工具：接收一个配置项清单和一个补丁文件，生成若干配置项清单，这些配置项清单能够覆盖补丁文件所做的代码修改。
+
+### 0 小试牛刀
 
 生成patch文件：
 
@@ -35,3 +37,27 @@ KCONFIG_CONFIG=./0-riscv.config make LLVM=1 ARCH=riscv CROSS_COMPILE=riscv64-unk
 结果：
 
 编译出来的内核没法启动！
+
+## ctags
+
+一个工具：用于找到linux内核中所有的全局变量。
+
+### 0 小试牛刀
+
+安装：
+
+```shell
+sudo apt install universal-ctags
+```
+
+找到linux内核中的全局变量：
+
+```shell
+ctags -R --fields=+n --c-kinds=v --extras=+q .
+# -R 递归扫描目录
+# --fields=+n 让tags文件包含行号
+# --c-kinds=v 让ctags记录变量(variable)
+# --extras=+q 仅追踪定义的符号，声明类的不显示
+# . 从当前目录开始
+# 生成的结果文件在tags中
+```
