@@ -1,11 +1,11 @@
 2025-11-25
 
-* [ ] ctags的用法
+* [X] ctags的用法
 
 2025-11-24
 
-* [ ] 进一步调研syzlang in riscv；
-* [ ] 利用[krepair](https://github.com/paulgazz/kmax)对配置项清单/fuzzer做改进。
+* [X] 进一步调研syzlang in riscv；
+* [X] 利用[krepair](https://github.com/paulgazz/kmax)对配置项清单/fuzzer做改进。
 
 > Linux的riscv分支每隔1~2周就会更新rc版本，在持续模糊测试的场景下，测试的重点应当放在这些新加入的补丁上。因此：
 >
