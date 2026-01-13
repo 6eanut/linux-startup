@@ -36,3 +36,8 @@
   * 输出：
     * func1和func2各自的调用链；
     * 共同的调用链。
+
+**03 riscv64_asm to machine_code**
+
+* [script](./03_asm2hex.py)
+* 输入是一行行的[汇编指令](../code/input.s)，输出是一行行的[机器码](../code/code.bin)，还有一个[日志文件](../code/map.txt)。

@@ -1,0 +1,30 @@
+000012b7    lui	t0,0x1
+0032829b    addiw	t0,t0,3 # 1003 <_start+0x1003>
+0002b303    ld	t1,0(t0)
+000012b7    lui	t0,0x1
+0032829b    addiw	t0,t0,3 # 1003 <_start+0x1003>
+0062b023    sd	t1,0(t0)
+
+fffff2b7    lui	t0,0xfffff
+0002b303    ld	t1,0(t0) # fffffffffffff000 <_start+0xfffffffffffff000>
+
+fffff2b7    lui	t0,0xfffff
+0062b023    sd	t1,0(t0) # fffffffffffff000 <_start+0xfffffffffffff000>
+
+fffff2b7    lui	t0,0xfffff
+00028067    jr	t0 # fffffffffffff000 <_start+0xfffffffffffff000>
+
+400002b7    lui	t0,0x40000
+00028067    jr	t0 # 40000000 <_start+0x40000000>
+
+400002b7    lui	t0,0x40000
+0002b303    ld	t1,0(t0) # 40000000 <_start+0x40000000>
+
+400002b7    lui	t0,0x40000
+0062b023    sd	t1,0(t0) # 40000000 <_start+0x40000000>
+
+00000073    ecall
+
+00100073    ebreak
+
+fadff06f    j	0 <_start>
